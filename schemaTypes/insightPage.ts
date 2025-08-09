@@ -1,13 +1,12 @@
 import { defineType } from 'sanity';
 
 export default defineType({
-  name: 'workPage',
-  title: 'Work Page',
+  name: 'insightPage',
+  title: 'Insight Page',
   type: 'document',
   fields: [
-    { name: 'title', title: 'Page Title', type: 'string' },
-    { name: 'description', title: 'Page Description', type: 'text' },
-        {
+    { name: 'title', title: 'Title', type: 'string' },
+            {
           name: "seo",
           title: "SEO",
           type: "object",
