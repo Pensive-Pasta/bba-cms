@@ -5,6 +5,7 @@ export default defineCliConfig({
     projectId: '9s2ar5mb',
     dataset: 'production'
   },
+  studioHost: 'bba-cms',
   /**
    * Enable auto-updates for studios.
    * Learn more at https://www.sanity.io/docs/cli#auto-updates
