@@ -3,15 +3,11 @@ import {defineCliConfig} from 'sanity/cli'
 export default defineCliConfig({
   api: {
     projectId: '9s2ar5mb',
-    dataset: 'production'
+    dataset: 'production',
   },
   studioHost: 'wearebba',
   deployment: {
-    appId: 'cold242f6o1jpio8lilceo56',
-    /**
-     * Enable auto-updates for studios.
-     * Learn more at https://www.sanity.io/docs/cli#auto-updates
-     */
+    appId: 'lbl4rsiao8bublihz7toto6c',
     autoUpdates: true,
   },
 })
