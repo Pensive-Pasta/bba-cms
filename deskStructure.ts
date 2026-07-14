@@ -31,6 +31,10 @@ const deskStructure: StructureResolver = (S) =>
                 .title('Contact Page')
                 .child(S.document().schemaType('contactPage').documentId('contactPage')),
 
+              S.listItem()
+                .title('Legal Page')
+                .child(S.document().schemaType('legalPage').documentId('legalPage')),
+
             ])
         ),
       S.divider(),
