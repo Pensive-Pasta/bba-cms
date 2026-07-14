@@ -5,7 +5,7 @@ export default defineCliConfig({
     projectId: '9s2ar5mb',
     dataset: 'production'
   },
-  studioHost: 'bba-cms',
+  studioHost: 'wearebba',
   deployment: {
     appId: 'cold242f6o1jpio8lilceo56',
     /**
