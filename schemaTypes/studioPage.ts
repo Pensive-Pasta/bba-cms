@@ -16,7 +16,7 @@ export default defineType({
       title: 'Profile Content',
       type: 'array',
       group: 'profile',
-      of: [{ type: 'textBlock' }, { type: 'imageBlock' }],
+      of: [{ type: 'textBlock' }, { type: 'imageBlock' }, { type: 'galleryBlock' }],
     },
     {
   name: 'peopleIntro',
@@ -36,14 +36,14 @@ export default defineType({
       title: 'Values Content',
       type: 'array',
       group: 'values',
-      of: [{ type: 'textBlock' }, { type: 'imageBlock' }],
+      of: [{ type: 'textBlock' }, { type: 'imageBlock' }, { type: 'galleryBlock' }],
     },
     {
       name: 'awardsBlocks',
       title: 'Awards Content',
       type: 'array',
       group: 'awards',
-      of: [{ type: 'textBlock' }, { type: 'imageBlock' }],
+      of: [{ type: 'textBlock' }, { type: 'imageBlock' }, { type: 'galleryBlock' }],
     },
 
             {

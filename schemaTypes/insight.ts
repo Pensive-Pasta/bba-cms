@@ -30,6 +30,7 @@ export default defineType({
       of: [
         { type: 'textBlock' },
         { type: 'imageBlock' },
+        { type: 'galleryBlock' },
       ],
     },
     {

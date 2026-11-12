@@ -1,4 +1,4 @@
-import { defineType } from 'sanity';
+import { defineField, defineType } from 'sanity';
 
 export default defineType({
   name: 'project',
@@ -33,6 +33,38 @@ export default defineType({
     },
     ],
   },
+    defineField({
+      name: 'heroVideo',
+      title: 'Desktop hero video (optional)',
+      type: 'file',
+      options: { accept: 'video/mp4,video/webm' },
+      description: 'Replaces the desktop Hero Image visually. Keep Hero Image as the poster/fallback and project tile. Use a short, compressed landscape montage (1920 × 1080), without audio.',
+      validation: (rule) => rule.custom((file) =>
+        !file?.asset?._ref || /-(mp4|webm)$/i.test(file.asset._ref)
+          ? true
+          : 'Please upload an MP4 or WebM video.'
+      ),
+    }),
+    defineField({
+      name: 'mobileHeroImage',
+      title: 'Mobile hero image (optional)',
+      type: 'image',
+      options: { hotspot: true },
+      description: 'Portrait-friendly image (for example 1080 × 1920). Overrides desktop media on mobile when no mobile video is provided; also used as the mobile video poster. Leave empty to reuse the desktop image/media.',
+      fields: [{ name: 'altText', title: 'Alt Text', type: 'string' }],
+    }),
+    defineField({
+      name: 'mobileHeroVideo',
+      title: 'Mobile hero video (optional)',
+      type: 'file',
+      options: { accept: 'video/mp4,video/webm' },
+      description: 'Overrides other hero media on mobile. Use a short, compressed portrait-friendly montage (1080 × 1920), without audio. If empty, mobile image takes priority, then desktop video, then Hero Image.',
+      validation: (rule) => rule.custom((file) =>
+        !file?.asset?._ref || /-(mp4|webm)$/i.test(file.asset._ref)
+          ? true
+          : 'Please upload an MP4 or WebM video.'
+      ),
+    }),
     {
       name: 'contentBlocks',
       title: 'Content Blocks',
@@ -40,6 +72,7 @@ export default defineType({
       of: [
         { type: 'textBlock' },
         { type: 'imageBlock' },
+        { type: 'galleryBlock' },
       ],
     },
     {
