@@ -1,6 +1,7 @@
 import {defineConfig} from 'sanity';
 import {structureTool} from 'sanity/structure';
 import {visionTool} from '@sanity/vision';
+import {media} from 'sanity-plugin-media';
 import {schemaTypes} from './schemaTypes';
 import deskStructure from './deskStructure';
 import MyLogo from './components/MyLogo';
@@ -11,6 +12,6 @@ export default defineConfig({
   projectId: '9s2ar5mb',
   dataset: 'production',
   icon: MyLogo,             
-  plugins: [structureTool({structure: deskStructure}), visionTool()],
+  plugins: [structureTool({structure: deskStructure}), visionTool(), media()],
   schema: {types: schemaTypes},
 });
