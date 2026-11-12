@@ -18,35 +18,12 @@ test('Gallery requires at least one selected image without limiting image count'
   }
 })
 
-test('Gallery images require an asset and meaningful alt text; captions remain optional', async () => {
+test('Gallery images require an asset; alt text and captions remain optional', async () => {
   const imageRule = image.validation(new ConcreteRuleClass().type('object'))
   assert.ok((await imageRule.validate({}, context('image', 'object'))).length)
   assert.equal((await imageRule.validate({asset: {_ref: 'image-test'}}, context('image', 'object'))).length, 0)
   const alt = image.fields.find((field) => field.name === 'altText')
-  const altRule = alt.validation(new ConcreteRuleClass().type('string'))
-  const assetContext = (savedAlt) => ({
-    ...context('altText', 'string'),
-    parent: {asset: {_ref: 'image-test'}},
-    getClient: () => ({
-      withConfig: () => ({fetch: async (query, params) => {
-        assert.equal(query, '*[_id == $assetId][0].altText')
-        assert.deepEqual(params, {assetId: 'image-test'})
-        return savedAlt
-      }}),
-    }),
-  })
-  for (const value of [undefined, '', '   ']) {
-    for (const savedAlt of [null, '', '   ']) {
-      assert.ok((await altRule.validate(value, assetContext(savedAlt))).length)
-    }
-    assert.equal((await altRule.validate(value, assetContext('Courtyard entrance'))).length, 0)
-  }
-  // An explicit override works without fetching the asset.
-  assert.equal((await altRule.validate('Courtyard entrance', context('altText', 'string'))).length, 0)
-  assert.equal((await altRule.validate(undefined, context('altText', 'string'))).length, 0)
-  const unavailable = {...assetContext(null), getClient: () => {throw new Error('Offline')}}
-  const errors = await altRule.validate(undefined, unavailable)
-  assert.ok(errors.some((error) => error.message.includes('Could not check')))
+  assert.equal(alt.validation, undefined)
   assert.equal(image.fields.find((field) => field.name === 'caption').validation, undefined)
   assert.equal(image.options.hotspot, true)
 })

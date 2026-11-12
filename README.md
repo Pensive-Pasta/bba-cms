@@ -2,12 +2,12 @@
 
 ## Gallery alt text
 
-Gallery images accept an optional `altText` override. When it is blank, Studio
-validation checks `altText` on the referenced image asset. An image must have a
-nonblank description in one of those places.
+Gallery `altText` is entirely optional, regardless of whether the referenced image
+asset has saved alt text. Missing descriptions never block image selection,
+uploading, or publishing. The frontend handles missing alt text.
 
-The website must resolve the same fallback when querying gallery images (this
-repository contains the Studio only). Inside a gallery block projection, use:
+The website can optionally fall back to asset alt text (this repository contains
+the Studio only). Inside a gallery block projection, use:
 
 ```groq
 images[]{
