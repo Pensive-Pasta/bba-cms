@@ -6,6 +6,7 @@ export default defineType({
   type: 'document',
   fields: [
     { name: 'title', title: 'Title', type: 'string' },
+    { name: 'description', title: 'Introduction', type: 'text', description: 'Optional editorial introduction for the Insights page.' },
             {
           name: "seo",
           title: "SEO",

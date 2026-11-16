@@ -18,7 +18,11 @@ export default defineType({
       title: 'Type',
       type: 'string',
       options: {
-        list: ['news', 'projects', 'thinking'],
+        list: [
+          { title: 'News', value: 'news' },
+          { title: 'Projects', value: 'projects' },
+          { title: 'Perspectives', value: 'thinking' },
+        ],
         layout: 'radio',
       },
       initialValue: 'news',
