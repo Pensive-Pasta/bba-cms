@@ -10,7 +10,10 @@ export default {
       of: [
         {
           type: 'block',
-          styles: [],
+          styles: [
+            { title: 'Normal', value: 'normal' },
+            { title: 'Section heading', value: 'h2' },
+          ],
           marks: {
             decorators: [
               { title: 'Strong', value: 'strong' },
