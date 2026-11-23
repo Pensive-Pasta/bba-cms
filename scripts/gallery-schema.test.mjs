@@ -36,3 +36,23 @@ test('Gallery previews support empty values, a thumbnail, heading and image coun
     title: 'Courtyard', subtitle: '2 images', media: first,
   })
 })
+
+
+test('Editorial is opt-in and exposes reusable image placement without requiring captions', () => {
+  const presentation = gallery.fields.find((field) => field.name === 'presentation')
+  assert.equal(presentation.initialValue, 'scroll')
+  assert.deepEqual(presentation.options.list.map((item) => item.value), ['scroll', 'editorial'])
+  const layout = image.fields.find((field) => field.name === 'editorialLayout')
+  assert.equal(layout.initialValue, 'auto')
+  assert.deepEqual(layout.options.list.map((item) => item.value), ['auto', 'full', 'half', 'portrait-stack'])
+})
+
+test('Editorial portrait arrangements require two following images without conflicting placements', async () => {
+  const rule = images.validation(new ConcreteRuleClass().type('array'))
+  const ctx = {...context('images', 'array'), parent: {presentation: 'editorial'}}
+  const selected = (layout) => ({asset: {_ref: 'image-test'}, editorialLayout: layout})
+  assert.ok((await rule.validate([selected('portrait-stack')], ctx)).length)
+  assert.ok((await rule.validate([selected('portrait-stack'), selected('half'), selected('full')], ctx)).length)
+  assert.equal((await rule.validate([selected('full'), selected('portrait-stack'), selected('half'), selected('half')], ctx)).length, 0)
+  assert.equal((await rule.validate([selected('portrait-stack')], context('images', 'array'))).length, 0)
+})
