@@ -1,3 +1,4 @@
+import {imageAccessibilityFields} from './imageAccessibility.js'
 import { defineField, defineType } from 'sanity';
 
 export default defineType({
@@ -90,11 +91,7 @@ export default defineType({
   type: 'image',
   options: { hotspot: true },
   fields: [
-    {
-      name: 'altText',
-      title: 'Alt Text',
-      type: 'string',
-    },
+    ...imageAccessibilityFields(),
     ],
   },
     defineField({
@@ -117,7 +114,7 @@ export default defineType({
       type: 'image',
       options: { hotspot: true },
       description: 'Portrait-friendly image (for example 1080 × 1920). Overrides desktop media on mobile when no mobile video is provided; also used as the mobile video poster. Leave empty to reuse the desktop image/media.',
-      fields: [{ name: 'altText', title: 'Alt Text', type: 'string' }],
+      fields: [...imageAccessibilityFields()],
     }),
     defineField({
       name: 'mobileHeroVideo',
@@ -162,18 +159,7 @@ export default defineType({
     },
   ],
 },
-    {
-  name: "seo",
-  group: "seo",
-  title: "SEO",
-  type: "object",
-  options: { collapsible: true, collapsed: true },
-  fields: [
-    { name: "metaTitle", title: "Meta Title", type: "string" },
-    { name: "metaDescription", title: "Meta Description", type: "text", rows: 3 },
-    { name: "ogImage", title: "OG Image", type: "image", options: { hotspot: true }, description: "This image will be used on social media and search engines" },
-  ]
-}
+    { name: 'seo', title: 'SEO', type: 'seo', group: 'seo' }
   ],
   preview: {
     select: { title: 'title', subtitle: 'postCode', media: 'heroImage' },

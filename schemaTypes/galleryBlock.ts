@@ -1,3 +1,4 @@
+import {imageAccessibilityFields} from './imageAccessibility.js'
 import {defineArrayMember, defineField, defineType} from 'sanity'
 
 export default defineType({
@@ -45,12 +46,7 @@ export default defineType({
           options: {hotspot: true},
           validation: (rule) => rule.required().assetRequired(),
           fields: [
-            defineField({
-              name: 'altText',
-              title: 'Alt Text (optional)',
-              type: 'string',
-              description: 'Optional description for this image in the gallery. Missing alt text is handled by the frontend.',
-            }),
+            ...imageAccessibilityFields(),
             defineField({name: 'caption', title: 'Caption (optional)', type: 'string'}),
             defineField({
               name: 'editorialLayout',

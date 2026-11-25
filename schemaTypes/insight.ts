@@ -5,11 +5,13 @@ export default defineType({
   title: 'Insight',
   type: 'document',
   fields: [
-    { name: 'title', title: 'Title', type: 'string' },
-    { name: 'slug', title: 'Slug', type: 'slug', options: { source: 'title', maxLength: 96 } },
+    { name: 'title', title: 'Title', type: 'string', validation: (rule) => rule.required() },
+    { name: 'slug', title: 'Slug', type: 'slug', options: { source: 'title', maxLength: 96 }, validation: (rule) => rule.required() },
     {
   name: 'publishedAt',
   title: 'Published Date',
+  description: 'Displayed article date. Use Publish or Unpublish to control visibility; this date does not schedule publication.',
+  validation: (rule) => rule.required(),
   type: 'datetime',
   initialValue: () => new Date().toISOString(),
 },
@@ -30,6 +32,7 @@ export default defineType({
     {
       name: 'contentBlocks',
       title: 'Content Blocks',
+      description: 'Manage article readiness editorially. Published Insights appear on the website regardless of their content.',
       type: 'array',
       of: [
         { type: 'textBlock' },
@@ -37,16 +40,6 @@ export default defineType({
         { type: 'galleryBlock' },
       ],
     },
-    {
-  name: "seo",
-  title: "SEO",
-  type: "object",
-  options: { collapsible: true, collapsed: true },
-  fields: [
-    { name: "metaTitle", title: "Meta Title", type: "string" },
-    { name: "metaDescription", title: "Meta Description", type: "text", rows: 3 },
-    { name: "ogImage", title: "OG Image", type: "image", options: { hotspot: true }, description: "This image will be used on social media and search engines" },
-  ]
-}
+    { name: 'seo', title: 'SEO', type: 'seo' }
   ],
 });

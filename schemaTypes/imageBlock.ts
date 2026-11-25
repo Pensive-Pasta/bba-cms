@@ -1,3 +1,4 @@
+import {imageAccessibilityFields} from './imageAccessibility.js'
 export default {
   name: 'imageBlock',
   title: 'Image Block',
@@ -15,11 +16,7 @@ export default {
           options: { hotspot: true },
           validation: (Rule: any) => Rule.required(),
           fields: [
-            {
-              name: 'altText',
-              title: 'Alt Text',
-              type: 'string',
-            },
+            ...imageAccessibilityFields(),
             {
               name: 'caption',
               title: 'Caption',

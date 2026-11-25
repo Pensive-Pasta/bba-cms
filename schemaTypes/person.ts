@@ -1,3 +1,4 @@
+import {imageAccessibilityFields} from './imageAccessibility.js'
 export default {
   name: 'person',
   title: 'Person',
@@ -7,6 +8,7 @@ export default {
       name: 'image',
       type: 'image',
       title: 'Image',
+      fields: imageAccessibilityFields('alt'),
       options: {
         hotspot: true,
       },

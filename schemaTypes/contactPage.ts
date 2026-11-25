@@ -72,17 +72,7 @@ export default defineType({
     }),
 
     // SEO
-    defineField({
-      name: "seo",
-      title: "SEO Settings",
-      type: "object",
-      options: { collapsible: true, collapsed: true },
-      fields: [
-        defineField({ name: "metaTitle", title: "Meta Title", type: "string", validation: (r) => r.required().max(60) }),
-        defineField({ name: "metaDescription", title: "Meta Description", type: "text", rows: 3, validation: (r) => r.max(160) }),
-        defineField({ name: "ogImage", title: "OG Image", type: "image", options: { hotspot: true }, description: "This image will be used on social media and search engines" }),
-      ],
-    }),
+    defineField({ name: 'seo', title: 'SEO', type: 'seo' }),
   ],
   preview: { select: { title: "title", subtitle: "email" } },
 });

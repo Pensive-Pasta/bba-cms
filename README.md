@@ -69,3 +69,32 @@ The Rev5 workbook selects 120 entries, but project 115 has an explicit omission 
 so the approved import contains 119. Project 325 is already excluded as a duplicate of 275.
 Project number 160 is duplicated outside the selected website rows and must be reconciled
 before any wider business-data import. The spreadsheet Case Study marker never enables a page.
+
+## SEO and image descriptions
+
+The shared SEO object is an optional override on pages, Projects and Insights. Empty fields
+use current published page content in the frontend; they do not require manually duplicating
+the title, introduction or hero image. Existing overrides keep their precedence. Image crops
+and hotspots are respected in social image URLs. Longer search titles/descriptions raise
+editor warnings instead of preventing publication.
+
+Meaningful images have an Image description field. Shared Media-library alt text is reused
+when no placement override exists. An explicit empty override is preserved. Decorative image
+explicitly renders empty alt text. People portraits retain the existing image.alt storage key.
+
+Sanity publication status controls Insight visibility. Published articles with valid slugs
+appear in the listing, have detail routes and enter the production sitemap, regardless of
+placeholder copy or display date. Update content or unpublish unfinished articles editorially.
+Publication changes reach the static website on its next build.
+
+The reviewed metadata update is repeatable with the authorised CLI login:
+
+```sh
+npx sanity exec scripts/prepare-launch-seo.mjs --with-user-token
+# Review the new ignored backups/launch-seo-*.local/plan.json before writing.
+npx sanity exec scripts/prepare-launch-seo.mjs --with-user-token -- --publish
+```
+
+It fills only the reviewed missing metadata/descriptions, preserves all other content,
+backs up the affected documents and applies one revision-locked transaction. A repeat
+plan after publication reports zero updates.

@@ -1,27 +1,6 @@
 import { defineArrayMember, defineField, defineType } from "sanity";
 
-const seoFields = [
-  defineField({
-    name: "metaTitle",
-    title: "Meta Title",
-    type: "string",
-    validation: (rule) => rule.required().max(60),
-  }),
-  defineField({
-    name: "metaDescription",
-    title: "Meta Description",
-    type: "text",
-    rows: 3,
-    validation: (rule) => rule.max(160),
-  }),
-  defineField({
-    name: "ogImage",
-    title: "OG Image",
-    type: "image",
-    options: { hotspot: true },
-    description: "This image will be used on social media and search engines",
-  }),
-];
+
 
 export default defineType({
   name: "legalPage",
@@ -97,13 +76,7 @@ export default defineType({
       description:
         "Add the full legal page content here. Headings, lists, links and inline formatting are supported.",
     }),
-    defineField({
-      name: "seo",
-      title: "SEO",
-      type: "object",
-      options: { collapsible: true, collapsed: true },
-      fields: seoFields,
-    }),
+    defineField({ name: 'seo', title: 'SEO', type: 'seo' }),
   ],
   preview: {
     select: {

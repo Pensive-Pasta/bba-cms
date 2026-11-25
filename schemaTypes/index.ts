@@ -1,3 +1,4 @@
+import seo from './seo'
 import workPage from "./workPage";
 import project from "./project";
 import textBlock from "./textBlock";
@@ -11,4 +12,4 @@ import contactPage from "./contactPage";
 import homePage from "./homePage";
 import legalPage from "./legalPage";
 
-export const schemaTypes = [homePage, contactPage, legalPage, workPage, insightPage, insight, studioPage, person, project, textBlock, imageBlock, galleryBlock];
+export const schemaTypes = [seo, homePage, contactPage, legalPage, workPage, insightPage, insight, studioPage, person, project, textBlock, imageBlock, galleryBlock];
