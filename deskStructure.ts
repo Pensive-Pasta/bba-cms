@@ -40,7 +40,17 @@ const deskStructure: StructureResolver = (S) =>
       S.divider(),
 
       // Normal documents
-      S.documentTypeListItem('project').title('Projects'),
+      S.listItem()
+        .title('Projects')
+        .child(S.list().title('Projects').items([
+          S.listItem().title('Case Studies').child(
+            S.documentTypeList('project').title('Case Studies').filter('_type == "project" && caseStudyEnabled == true')
+          ),
+          S.listItem().title('Index Only').child(
+            S.documentTypeList('project').title('Index Only').filter('_type == "project" && includeInWorkIndex == true && coalesce(caseStudyEnabled, false) == false')
+          ),
+          S.documentTypeListItem('project').title('All Projects'),
+        ])),
       S.documentTypeListItem('insight').title('Insights'),
     ]);
 
