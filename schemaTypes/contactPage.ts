@@ -36,9 +36,16 @@ export default defineType({
     defineField({ name: "email", title: "Email", type: "email", validation: (r) => r.required() }),
     defineField({
       name: "tel",
-      title: "Telephone",
+      title: "Oundle Telephone",
       type: "string",
       validation: (r) => r.required().regex(/^[+()0-9\s-]+$/, { name: "phone number" }),
+    }),
+
+    defineField({
+      name: "manchesterTel",
+      title: "Manchester Telephone",
+      type: "string",
+      validation: (r) => r.regex(/^[+()0-9\s-]+$/, { name: "phone number" }),
     }),
 
     // Strict two-card group
