@@ -9,6 +9,7 @@
     "start": "sanity start",
     "build": "sanity build",
     "test:gallery": "node --experimental-strip-types --test scripts/gallery-schema.test.mjs scripts/copper-editorial.test.mjs",
+    "test:project-number": "node --experimental-strip-types --test scripts/project-number.test.mjs",
     "deploy": "sanity deploy",
     "deploy-graphql": "sanity graphql deploy"
   },

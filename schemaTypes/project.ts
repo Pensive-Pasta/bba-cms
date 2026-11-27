@@ -20,7 +20,7 @@ export default defineType({
         if (!value) return true;
         const id = context.document?._id.replace(/^drafts\./, '');
         const count = await context.getClient({ apiVersion: '2025-02-19' }).fetch<number>(
-          '*[_type == "project" && projectNumber == $value && !(_id in [$id, $draftId])] | count(@)',
+          'count(*[_type == "project" && projectNumber == $value && !(_id in [$id, $draftId])])',
           { value, id, draftId: `drafts.${id}` }
         );
         return count === 0 ? true : 'This project number belongs to another Project.';
